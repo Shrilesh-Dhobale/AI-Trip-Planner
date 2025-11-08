@@ -9,6 +9,10 @@ const router=createBrowserRouter([
     path: '/',
     element: <App/>,
   },
+  {
+    path: '/create-trip',
+    element: <CreateTrip/>,
+  }
 ])
   
 createRoot(document.getElementById('root')).render(
