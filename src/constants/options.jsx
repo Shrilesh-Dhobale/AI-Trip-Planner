@@ -20,6 +20,12 @@ export const SelectTravelList = [
         icon:"👨‍👩‍👧‍👦",
         people:'3-5'
     },
-   
+     {
+        id:4,
+        title:"Group",
+        desc:"Exciting adventure with friends"
+        icon:"👥",
+        people:'5+'
+    }
         
 ]
