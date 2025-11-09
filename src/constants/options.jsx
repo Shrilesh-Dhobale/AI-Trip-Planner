@@ -29,3 +29,11 @@ export const SelectTravelList = [
     }
         
 ]
+export const SelectBudgetOptions = [
+    {
+        id:1,
+        title:"Cheap",
+        desc:"Budget-friendly options for cost-conscious travelers"
+        icon:"💸",
+    }
+]
