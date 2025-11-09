@@ -1,4 +1,5 @@
 import React from 'react'
+import { Button } from '../ui/button'
 
 function Hero() {
   return (
@@ -9,6 +10,7 @@ function Hero() {
       </h1>
       <p className='text-xl text-gray-500 text-center'>Your personal trip planner and travel curator, creating custom itineraries tailored
         to your interests and budget.</p>
+      <Button>Get Started, It's free</Button>
     </div>
   )
 }
