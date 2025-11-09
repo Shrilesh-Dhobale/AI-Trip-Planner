@@ -6,6 +6,12 @@ export const SelectTravelList = [
         icon:"✈︎",
         people:'1'
     },
-    
+    {
+        id:2,
+        title:"Couple",
+        desc:"Romantic getaway for two"
+        icon:"❤️",
+        people:'2'
+    }
         
-    
+]
