@@ -6,7 +6,7 @@ function Header() {
     <div className=' shadow-sm flex justify-between items-center'>
       <img src="/logo.png" alt="Logo" className="h-25 w-25" />
       <div>
-        <Button/>
+        <Button>Sign In</Button>
       </div>
     </div>
   )
