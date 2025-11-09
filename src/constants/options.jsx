@@ -41,5 +41,11 @@ export const SelectBudgetOptions = [
         title:"Moderate",
         desc:"Balanced options for a comfortable trip"
         icon:"🛍️",
+    },
+    {
+        id:3,
+        title:"Luxury",
+        desc:"Premium options for a lavish experience"
+        icon:"💎",
     }
 ]
