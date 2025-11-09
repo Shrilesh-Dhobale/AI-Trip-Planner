@@ -12,6 +12,14 @@ export const SelectTravelList = [
         desc:"Romantic getaway for two"
         icon:"❤️",
         people:'2'
-    }
+    },
+    {
+        id:3,
+        title:"Family",
+        desc:"Fun-filled trip for the whole family"
+        icon:"👨‍👩‍👧‍👦",
+        people:'3-5'
+    },
+   
         
 ]
