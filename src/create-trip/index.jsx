@@ -1,9 +1,9 @@
 import React from 'react'
-import Header from '../components/custom/Header'
+
 function CreateTrip() {
   return (
-    <div>
-      <Header/>
+    <div className='sm:px-10 md:px-32 lg:px-56 xl:px-10 px-5'>
+      
       CreateTrip
     </div>
   )
