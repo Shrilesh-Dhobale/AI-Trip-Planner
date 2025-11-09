@@ -20,6 +20,9 @@ function CreateTrip() {
             />
         </div>
       </div>
+      <div>
+        <h2 className='text-xl my-3 font-medium'>How many days are you planninf for?</h2>
+      </div>
     </div>
   )
 }
