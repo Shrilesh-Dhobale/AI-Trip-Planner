@@ -34,7 +34,7 @@ function CreateTrip() {
             {SelectBudgetOptions.map((item,index)=>(
               <div key={index} className='p-4 border rounded-lg hover:shadow'>
                 <h2 className='text-4xl'>{item.icon}</h2>
-                <h2>{item.title}</h2>
+                <h2 className='font-bold text-lg'>{item.title}</h2>
                 <p>{item.desc}</p>
               </div>
           ))}
