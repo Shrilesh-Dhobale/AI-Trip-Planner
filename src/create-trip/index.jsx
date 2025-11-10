@@ -10,6 +10,13 @@ function CreateTrip() {
 
   const [formData,setFormData]=useState([]);
 
+  const handleInputChange=(name,value)=>{
+    setFormData({
+      ...formData,
+      [name]:value
+    })
+  }
+
   return (
     <div className='sm:px-10 md:px-32 lg:px-56 xl:px-72 px-5 mt-10'>
       <h2 className='font-bold text-3xl'>Tell us your travel preferences🏕️🏖️</h2>
