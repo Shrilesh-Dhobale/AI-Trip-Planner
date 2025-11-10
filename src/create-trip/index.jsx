@@ -26,6 +26,11 @@ function CreateTrip() {
           <h2 className='text-xl my-3 font-medium'>How many days are you planning for?</h2>
           <Input type="number" placeholder='Ex. 3'/>
         </div>
+
+        <div>
+          <h2 className='text-xl my-3 font-medium'>What is Your Budget?</h2>
+          <Input type="number" placeholder='Ex. 3'/>
+        </div>
       </div>
      
     </div>
