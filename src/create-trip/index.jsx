@@ -35,7 +35,7 @@ function CreateTrip() {
               <div key={index} className='p-4 border rounded-lg hover:shadow'>
                 <h2 className='text-4xl'>{item.icon}</h2>
                 <h2 className='font-bold text-lg'>{item.title}</h2>
-                <p>{item.desc}</p>
+                <p className='text-sm text-gray-500'>{item.desc}</p>
               </div>
           ))}
           </div>
