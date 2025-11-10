@@ -3,6 +3,7 @@ import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
 import { useState } from 'react';
 import { Input } from '@/components/ui/input';
 import { SelectBudgetOptions, SelectTravelList } from '@/constants/options';
+import { Button } from '@/components/ui/button';
 
 function CreateTrip() {
   const [place,setplace]=useState();
@@ -54,7 +55,9 @@ function CreateTrip() {
           </div>
         </div>
       </div>
-     
+      <div className='flex justify-end mt-10'>
+        <Button>Generate Trip</Button>
+      </div>
     </div>
   )
 }
