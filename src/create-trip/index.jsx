@@ -30,13 +30,15 @@ function CreateTrip() {
 
         <div>
           <h2 className='text-xl my-3 font-medium'>What is Your Budget?</h2>
-          {SelectBudgetOptions.map((item,index)=>(
-            <div key={index} className='border p-4 rounded-lg flex items-center gap-4 cursor-pointer hover:shadow-lg'>
-              <h2 className='text-3xl'>{item.icon}</h2>
-              <h2 className='font-medium text-lg'>{item.title}</h2>
-              <p className='text-gray-500'>{item.desc}</p>
-            </div>
+          <div className='grid grid-cols-3 gap-5 mt-5'>
+            {SelectBudgetOptions.map((item,index)=>(
+              <div key={index} >
+                <h2>{item.icon}</h2>
+                <h2>{item.title}</h2>
+                <p>{item.desc}</p>
+              </div>
           ))}
+          </div>
         </div>
       </div>
      
