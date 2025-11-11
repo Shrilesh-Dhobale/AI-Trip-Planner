@@ -16,6 +16,10 @@ function CreateTrip() {
   }, [formData]);
 
   const handleInputChange=(name,value)=>{
+    if (name==='days'&&value>5){
+      console.log("Days cannot be more than 5");
+      return;
+    }
     setFormData({
       ...formData,
       [name]:value
