@@ -31,6 +31,7 @@ function CreateTrip() {
       return;
     }
   }
+  
   return (
     <div className='sm:px-10 md:px-32 lg:px-56 xl:px-72 px-5 mt-10'>
       <h2 className='font-bold text-3xl'>Tell us your travel preferences🏕️🏖️</h2>
@@ -89,7 +90,7 @@ function CreateTrip() {
         </div>
       </div>
       <div className='flex justify-end mt-10'>
-        <Button>Generate Trip</Button>
+        <Button onClick={onGenerateTrip}>Generate Trip</Button>
       </div>
     </div>
   )
