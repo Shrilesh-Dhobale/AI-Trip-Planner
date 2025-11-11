@@ -28,15 +28,16 @@ function CreateTrip() {
           <GooglePlacesAutocomplete
             apiKey={import.meta.env.VITE_GOOGLE_PLACES_API_KEY}
             selectProps={{
-              place,
-              onChange:(v)=>{setPlace(v);console.log(v)}
-            }
-            }
+              value: place,
+              onChange:(v)=>{setplace(v);console.log(v)}
+            }}
             />
         </div>
         <div>
           <h2 className='text-xl my-3 font-medium'>How many days are you planning for?</h2>
-          <Input type="number" placeholder='Ex. 3'/>
+          <Input type="number" placeholder='Ex. 3'
+          onChange={(e)=>handleInputChange('days',e.target.value)}
+          />
         </div>
 
         <div>
