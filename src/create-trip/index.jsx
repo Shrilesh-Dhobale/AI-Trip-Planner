@@ -1,14 +1,19 @@
 import React from 'react'
 import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Input } from '@/components/ui/input';
 import { SelectBudgetOptions, SelectTravelList } from '@/constants/options';
 import { Button } from '@/components/ui/button';
+
 
 function CreateTrip() {
   const [place,setplace]=useState();
 
   const [formData,setFormData]=useState([]);
+
+  useEffect(() => {
+    console.log(formData);
+  }, [formData]);
 
   const handleInputChange=(name,value)=>{
     setFormData({
@@ -29,7 +34,7 @@ function CreateTrip() {
             apiKey={import.meta.env.VITE_GOOGLE_PLACES_API_KEY}
             selectProps={{
               value: place,
-              onChange:(v)=>{setplace(v);console.log(v)}
+              onChange:(v)=>{setplace(v); console.log(v);}
             }}
             />
         </div>
@@ -44,8 +49,11 @@ function CreateTrip() {
           <h2 className='text-xl my-3 font-medium'>What is Your Budget?</h2>
           <div className='grid grid-cols-3 gap-5 mt-5'>
             {SelectBudgetOptions.map((item,index)=>(
-              <div key={index} className='p-4 border rounded-lg hover:shadow cursor-pointer '
-              onChange={()=>handleInputChange('budget',item.title)}>
+              <div key={index}
+              onClick={()=>handleInputChange('budget',item.title)} 
+              className={`p-4 border rounded-lg hover:shadow cursor-pointer 
+                ${formData?.budget==item.title&&'shadow-lg border-blue-500'}`}
+              >
                 <h2 className='text-4xl'>{item.icon}</h2>
                 <h2 className='font-bold text-lg'>{item.title}</h2>
                 <p className='text-sm text-gray-500'>{item.desc}</p>
