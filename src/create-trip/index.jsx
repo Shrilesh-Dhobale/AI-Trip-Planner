@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { Input } from '@/components/ui/input';
 import { SelectBudgetOptions, SelectTravelList } from '@/constants/options';
 import { Button } from '@/components/ui/button';
+import { toast } from 'sonner';
 
 
 function CreateTrip() {
@@ -28,6 +29,7 @@ function CreateTrip() {
   
   const onGenerateTrip=()=>{
     if (formData?.days>5 &&!formData?.location||!formData?.budget||!formData?.traveller){
+      toast("Please fill all the fields correctly");
       return;
     }
     console.log(formData);
@@ -45,7 +47,7 @@ function CreateTrip() {
             apiKey={import.meta.env.VITE_GOOGLE_PLACES_API_KEY}
             selectProps={{
               value: place,
-              onChange:(v)=>{setplace(v); console.log(v);}
+              onChange:(v)=>{setplace(v); handleInputChange('location', v.label); console.log(v);}
             }}
             />
         </div>
