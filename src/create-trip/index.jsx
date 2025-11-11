@@ -27,7 +27,7 @@ function CreateTrip() {
   }
   
   const onGenerateTrip=()=>{
-    if (formData?.days>5){
+    if (formData?.days>5 &&!formData?.location||!formData?.budget||!formData?.traveller){
       return;
     }
     console.log(formData);
