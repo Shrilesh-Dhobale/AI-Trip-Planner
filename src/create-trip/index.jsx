@@ -45,7 +45,7 @@ function CreateTrip() {
           <div className='grid grid-cols-3 gap-5 mt-5'>
             {SelectBudgetOptions.map((item,index)=>(
               <div key={index} className='p-4 border rounded-lg hover:shadow cursor-pointer '
-              onClick={()=>handleInputChange('budget',item.title)}>
+              onChange={()=>handleInputChange('budget',item.title)}>
                 <h2 className='text-4xl'>{item.icon}</h2>
                 <h2 className='font-bold text-lg'>{item.title}</h2>
                 <p className='text-sm text-gray-500'>{item.desc}</p>
@@ -58,7 +58,8 @@ function CreateTrip() {
           <h2 className='text-xl my-3 font-medium'>Who do you plan on travelling with on your next adventure?</h2>
           <div className='grid grid-cols-3 gap-5 mt-5'>
             {SelectTravelList.map((item,index)=>(
-              <div key={index} className='p-4 border rounded-lg hover:shadow cursor-pointer '>
+              <div key={index} className='p-4 border rounded-lg hover:shadow cursor-pointer '
+              onChange={()=>handleInputChange('traveller',item.people)}>
                 <h2 className='text-4xl'>{item.icon}</h2>
                 <h2 className='font-bold text-lg'>{item.title}</h2>
                 <p className='text-sm text-gray-500'>{item.desc}</p>
