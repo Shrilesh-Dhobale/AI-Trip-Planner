@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button';
 function CreateTrip() {
   const [place,setplace]=useState();
 
-  const [formData,setFormData]=useState([]);
+  const [formData,setFormData]=useState({});
 
   useEffect(() => {
     console.log(formData);
@@ -30,8 +30,9 @@ function CreateTrip() {
     if (formData?.days>5){
       return;
     }
+    console.log(formData);
   }
-  console.log(formData);
+  
   return (
     <div className='sm:px-10 md:px-32 lg:px-56 xl:px-72 px-5 mt-10'>
       <h2 className='font-bold text-3xl'>Tell us your travel preferences🏕️🏖️</h2>
@@ -51,6 +52,7 @@ function CreateTrip() {
         <div>
           <h2 className='text-xl my-3 font-medium'>How many days are you planning for?</h2>
           <Input type="number" placeholder='Ex. 3'
+          
           onChange={(e)=>handleInputChange('days',e.target.value)}
           />
         </div>
