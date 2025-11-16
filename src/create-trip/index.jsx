@@ -45,13 +45,14 @@ function CreateTrip() {
   const onGenerateTrip=async ()=>{
     const user=localStorage.getItem('user');
     if(!user){
+      setOpenDialog(true);
       return;
     }
     if (!formData?.location || !formData?.budget || !formData?.traveller || !formData?.days || formData?.days > 5){
       toast("Please fill all the fields correctly")
       return;
     }
-  
+
     const FINAL_PROMPT=AI_prompt
     .replace('{location}',formData?.location)
     .replace('{totalDays}',formData?.days)
@@ -60,7 +61,7 @@ function CreateTrip() {
     .replace('{totalDays}',formData?.days);
 
     console.log(FINAL_PROMPT);
-    
+
     const result=await chatSession.sendMessage(FINAL_PROMPT);
     const responseText=await result.response.text;
   }
@@ -127,6 +128,18 @@ function CreateTrip() {
       <div className='flex justify-end mt-10'>
         <Button onClick={onGenerateTrip}>Generate Trip</Button>
       </div>
+      <Dialog open={openDialog} >
+  
+        <DialogContent>
+        <DialogHeader>
+        
+        <DialogDescription>
+           <img src="/logo.png" alt="Logo" className="w-20 h-20 mx-auto mb-4" />
+           
+        </DialogDescription>
+        </DialogHeader>
+        </DialogContent>
+      </Dialog>
     </div>
   )
 }
