@@ -1,11 +1,10 @@
 import React from 'react'
 import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
 import { useState, useEffect } from 'react';
-import { Input } from '@/components/ui/input';
-import { SelectBudgetOptions, SelectTravelList } from '@/constants/options';
-import { Button } from '@/components/ui/button';
+import { Input } from '../components/ui/input';
+import { SelectBudgetOptions, SelectTravelList, AI_prompt } from '../constants/options';
+import { Button } from '../components/ui/button';
 import { toast } from 'sonner';
-
 
 function CreateTrip() {
   const [place,setplace]=useState();
