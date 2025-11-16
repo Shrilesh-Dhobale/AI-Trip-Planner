@@ -14,22 +14,28 @@ function CreateTrip() {
 
   
   const handleInputChange=(name,value)=>{
+    if(name==='days' && value>5){
+      console.log("Days cannot be more than 5");
+      toast.error("Days cannot be more than 5");
+      return;
+    }
     setFormData({
         ...formData,
-      [name]: clampedValue.toString()
+      [name]: value
     })
   }
 
   useEffect(() => {
     console.log(formData);
-  }, [formData]);
+  }, [formData])
 
   
   const onGenerateTrip=async ()=>{
     if (formData?.days > 5 && !formData?.location || !formData?.budget || !formData?.traveller || !formData?.days || ){
-      toast("Please fill all the fields correctly");
+      toast("Please fill all the fields correctly")
       return;
     }
+  }
     const FINAL_PROMPT=AI_prompt
     .replace('{location}',formData?.location)
     .replace('{totalDays}',formData?.days)
