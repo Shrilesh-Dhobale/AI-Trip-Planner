@@ -9,7 +9,7 @@ import { chatSession } from '../service/AIModel';
 
 function CreateTrip() {
   const [place,setplace]=useState();
-
+  const [openDialog,setOpenDialog]=useState(false);
   const [formData,setFormData]=useState({});
 
   
@@ -31,6 +31,10 @@ function CreateTrip() {
 
   
   const onGenerateTrip=async ()=>{
+    const user=localStorage.getItem('user');
+    if(!user){
+      return;
+    }
     if (!formData?.location || !formData?.budget || !formData?.traveller || !formData?.days || formData?.days > 5){
       toast("Please fill all the fields correctly")
       return;
