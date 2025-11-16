@@ -32,7 +32,14 @@ function CreateTrip() {
       toast("Please fill all the fields correctly");
       return;
     }
-    console.log(formData);
+    const FINAL_PROMPT=AI_prompt
+    .replace('{location}',formData?.location?.label)
+    .replace('{totalDays}',formData?.days)
+    .replace('{traveller}',formData?.traveller)
+    .replace('{budget}',formData?.budget)
+    .replace('{totalDays}',formData?.days);
+
+    console.log(FINAL_PROMPT);
   }
   
   return (
