@@ -1,19 +1,20 @@
-import { GoogleGenAI } from "@google/genai";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
-const ai = new GoogleGenAI({
-  apiKey: "AIzaSyAguj3bkf79vhCkAuU3krcguBWvYlR3S9g"
+const API_KEY = import.meta.env.VITE_GOOGLE_AI_API_KEY;
+
+const genAI = new GoogleGenerativeAI(API_KEY);
+const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+
+export const chatSession = model.startChat({
+generationConfig: {
+    temperature: 1,
+    topP: 0.95,
+    topK: 64,
+    maxOutputTokens: 8192,
+    responseMimeType: "text/plain",
+  },
+  history: [],
 });
-
-async function run() {
-  const model = ai.getGenerativeModel({
-    model: "gemini-1.5-flash"
-  });
-
-  const result = await model.generateContent("Write your prompt here");
-  console.log(result.text());
-}
-
-run();
 
     
 
