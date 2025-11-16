@@ -1,31 +1,19 @@
-/*
- * Install the Generative AI SDK
- * $ npm install @google/generative-ai
- */
+import { GoogleGenAI } from "@google/genai";
 
-import { GoogleGenerativeAI } from "@google/generative-ai";
-
-const apiKey = import.meta.env.VITE_GOOGLE_GEMINI_AI_API_KEY; // Paste your API key here
-const genAI = new GoogleGenerativeAI(apiKey);
-
-const model = genAI.getGenerativeModel({
-  model: "gemini-pro",
+const ai = new GoogleGenAI({
+  apiKey: "AIzaSyAguj3bkf79vhCkAuU3krcguBWvYlR3S9g"
 });
 
-const generationConfig = {
-  temperature: 1,
-  topP: 0.95,
-  topK: 64,
-  maxOutputTokens: 8192,
-  
-};
+async function run() {
+  const model = ai.getGenerativeModel({
+    model: "gemini-1.5-flash"
+  });
 
-const chatSession = model.startChat({
-  generationConfig,
-  history: [],
-});
+  const result = await model.generateContent("Write your prompt here");
+  console.log(result.text());
+}
 
-export { chatSession };
+run();
 
     
 
