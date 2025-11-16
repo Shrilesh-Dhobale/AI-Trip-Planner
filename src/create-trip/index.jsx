@@ -16,7 +16,7 @@ function CreateTrip() {
   }, [formData]);
 
   const handleInputChange=(name,value)=>{
-    if (name==='days'&&value>5){
+    if (name==='days' && parseInt(value) > 5){
       console.log("Days cannot be more than 5");
       return;
     }
@@ -32,7 +32,7 @@ function CreateTrip() {
       return;
     }
     const FINAL_PROMPT=AI_prompt
-    .replace('{location}',formData?.location?.label)
+    .replace('{location}',formData?.location)
     .replace('{totalDays}',formData?.days)
     .replace('{traveller}',formData?.traveller)
     .replace('{budget}',formData?.budget)
