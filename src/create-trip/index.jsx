@@ -6,6 +6,18 @@ import { SelectBudgetOptions, SelectTravelList, AI_prompt } from '../constants/o
 import { Button } from '../components/ui/button';
 import { toast } from 'sonner';
 import { chatSession } from '../service/AIModel';
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+
+
 
 function CreateTrip() {
   const [place,setplace]=useState();
