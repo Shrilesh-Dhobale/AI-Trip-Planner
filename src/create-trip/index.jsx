@@ -5,29 +5,28 @@ import { Input } from '../components/ui/input';
 import { SelectBudgetOptions, SelectTravelList, AI_prompt } from '../constants/options';
 import { Button } from '../components/ui/button';
 import { toast } from 'sonner';
+import { chatSession } from '../service/AIModel';
 
 function CreateTrip() {
   const [place,setplace]=useState();
 
   const [formData,setFormData]=useState({});
 
+  
+  const handleInputChange=(name,value)=>{
+    setFormData({
+        ...formData,
+      [name]: clampedValue.toString()
+    })
+  }
+
   useEffect(() => {
     console.log(formData);
   }, [formData]);
 
-  const handleInputChange=(name,value)=>{
-    if (name==='days' && parseInt(value) > 5){
-      console.log("Days cannot be more than 5");
-      return;
-    }
-    setFormData({
-      ...formData,
-      [name]:value
-    })
-  }
   
-  const onGenerateTrip=()=>{
-    if (formData?.days>5 &&!formData?.location||!formData?.budget||!formData?.traveller){
+  const onGenerateTrip=async ()=>{
+    if (formData?.days > 5 && !formData?.location || !formData?.budget || !formData?.traveller || !formData?.days || ){
       toast("Please fill all the fields correctly");
       return;
     }
@@ -39,6 +38,9 @@ function CreateTrip() {
     .replace('{totalDays}',formData?.days);
 
     console.log(FINAL_PROMPT);
+    
+    const result=await chatSession.sendMessage(FINAL_PROMPT);
+    const responseText=await result.response.text;
   }
   
   return (
@@ -59,8 +61,8 @@ function CreateTrip() {
         </div>
         <div>
           <h2 className='text-xl my-3 font-medium'>How many days are you planning for?</h2>
-          <Input type="number" placeholder='Ex. 3'
-          
+          <Input type="number" placeholder='Ex. 3' max="5"
+          value={formData.days || ''}
           onChange={(e)=>handleInputChange('days',e.target.value)}
           />
         </div>

@@ -3,17 +3,13 @@
  * $ npm install @google/generative-ai
  */
 
-const {
-  GoogleGenerativeAI,
-  HarmCategory,
-  HarmBlockThreshold,
-} = require("@google/generative-ai");
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const apiKey = import.meta.env.VITE_GOOGLE_GEMINI_AI_API_KEY; // Paste your API key here
 const genAI = new GoogleGenerativeAI(apiKey);
 
 const model = genAI.getGenerativeModel({
-  model: "gemini-1.5-flash",
+  model: "gemini-pro",
 });
 
 const generationConfig = {
@@ -21,28 +17,15 @@ const generationConfig = {
   topP: 0.95,
   topK: 64,
   maxOutputTokens: 8192,
-  responseMimeType: "application/json", // This ensures JSON output
+  
 };
 
+const chatSession = model.startChat({
+  generationConfig,
+  history: [],
+});
 
-  // This is the prompt from your screenshot
-  const AI_prompt = `Generate Travel Plan for Location : {location}, for {totalDays} for {traveller} with a {budget} budget ,Give me a Hotels options list with HotelName, Hotel address, Price, hotel image url, geo coordinates, rating, descriptions and suggest itinerary with placeName, Place Details, Place Image Url, Geo Coordinates, ticket Pricing, rating, Time travel each of the location for {totalDays} with each day plan with best time to visit in JSON format.`;
-
-  
-    const chatSession = model.startChat({
-      generationConfig,
-      history: [
-        {
-          role: "user",
-          parts:[
-
-          ]
-        },
-        {
-
-        },
-      ],
-    });
+export { chatSession };
 
     
 
