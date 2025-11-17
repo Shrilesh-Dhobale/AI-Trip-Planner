@@ -145,7 +145,7 @@ function CreateTrip() {
            <p className="text-center mb-4">Please sign in to generate your personalized trip plan.</p>
            <Button 
             onClick={()=>login()} 
-           classname="w-full mt-5 mb-5 flex gap-4 items-center">
+           classname="w-full  mb-5 flex gap-4 items-center">
             <FcGoogle className="h-7 w-7" />Sign In with Google</Button>
         </DialogDescription>
         </DialogHeader>
