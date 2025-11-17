@@ -143,7 +143,9 @@ function CreateTrip() {
            <img src="/logo.png" alt="Logo" className="w-20 h-20 mx-auto mb-4" />
            <h2 classname="text-2xl font-bold text-center mb-2">Sign In With Google</h2>
            <p className="text-center mb-4">Please sign in to generate your personalized trip plan.</p>
-           <Button classname="w-full mt-5 mb-5 flex gap-4 items-center">
+           <Button 
+            onClick={()=>login()} 
+           classname="w-full mt-5 mb-5 flex gap-4 items-center">
             <FcGoogle className="h-7 w-7" />Sign In with Google</Button>
         </DialogDescription>
         </DialogHeader>
