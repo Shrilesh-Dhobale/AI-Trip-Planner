@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/dialog"
 import { FcGoogle } from "react-icons/fc";
 import { useGoogleLogin } from '@react-oauth/google';
+import axios from 'axios';
 
 
 
@@ -72,7 +73,14 @@ function CreateTrip() {
     const responseText=await result.response.text;
   }
 
-  
+  const GetUserProfile =(tokenInfo) => {
+    axios.get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${tokenInfo?.access_token}`, {
+      headers: {
+        Authorization: `Bearer ${tokenInfo?.access_token}`,
+        Accept: 'application/json'
+      }
+    });
+  };
   return (
     <div className='sm:px-10 md:px-32 lg:px-56 xl:px-72 px-5 mt-10'>
       <h2 className='font-bold text-3xl'>Tell us your travel preferences🏕️🏖️</h2>
