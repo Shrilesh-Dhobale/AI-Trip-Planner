@@ -73,6 +73,8 @@ function CreateTrip() {
       return;
     }
 
+  
+
     const FINAL_PROMPT=AI_prompt
     .replace('{location}',formData?.location)
     .replace('{totalDays}',formData?.days)
@@ -87,7 +89,14 @@ function CreateTrip() {
     const tripData = result.response;
     console.log(tripData);
   }
-
+  const SaveAITrip=async (tripData)=>{
+    const user=JSON.parse(localStorage.getItem('user'));
+    const docId=Date.now().toString();
+    await setDoc(doc(db, "cities", "LA"), {
+    userSelection:formData,
+    aiTripPlan:tripData,
+  });
+  }
   const GetUserProfile = async (tokenInfo) => {
     try {
       const response = await axios.get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${tokenInfo?.access_token}`, {
