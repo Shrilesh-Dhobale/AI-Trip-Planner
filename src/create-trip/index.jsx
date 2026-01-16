@@ -34,6 +34,11 @@ function CreateTrip() {
       toast.error("Days cannot be more than 5");
       return;
     }
+    if(name==='days' && value<1){
+      console.log("Days cannot be less than 1");
+      toast.error("Days cannot be less than 1");
+      return;
+    }
     setFormData({
         ...formData,
       [name]: value
@@ -45,8 +50,16 @@ function CreateTrip() {
   }, [formData])
   
   const login=useGoogleLogin({
-    onSuccess: (codeResp) => console.log(codeResp),
-    onError:(error)=>console.log('error')
+    onSuccess: async (tokenResponse) => {
+      const userData = await GetUserProfile(tokenResponse);
+      localStorage.setItem('user', JSON.stringify(userData));
+      setOpenDialog(false);
+      toast.success("Login successful!");
+    },
+    onError:(error)=>console.log('error'),
+    flow: 'auth-code',
+    ux_mode: 'popup',
+    redirectUri: window.location.origin
   });
   
   const onGenerateTrip=async ()=>{
@@ -70,16 +83,24 @@ function CreateTrip() {
     console.log(FINAL_PROMPT);
 
     const result=await chatSession.sendMessage(FINAL_PROMPT);
-    const responseText=await result.response.text;
+    console.log(result.response);
+    const tripData = result.response;
+    console.log(tripData);
   }
 
-  const GetUserProfile =(tokenInfo) => {
-    axios.get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${tokenInfo?.access_token}`, {
-      headers: {
-        Authorization: `Bearer ${tokenInfo?.access_token}`,
-        Accept: 'application/json'
-      }
-    });
+  const GetUserProfile = async (tokenInfo) => {
+    try {
+      const response = await axios.get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${tokenInfo?.access_token}`, {
+        headers: {
+          Authorization: `Bearer ${tokenInfo?.access_token}`,
+          Accept: 'application/json'
+        }
+      });
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching user profile:', error);
+      throw error;
+    }
   };
   return (
     <div className='sm:px-10 md:px-32 lg:px-56 xl:px-72 px-5 mt-10'>
@@ -99,7 +120,7 @@ function CreateTrip() {
         </div>
         <div>
           <h2 className='text-xl my-3 font-medium'>How many days are you planning for?</h2>
-          <Input type="number" placeholder='Ex. 3' max="5"
+          <Input type="number" placeholder='Ex. 3' min="1" max="5"
           value={formData.days || ''}
           onChange={(e)=>handleInputChange('days',e.target.value)}
           />
@@ -146,16 +167,16 @@ function CreateTrip() {
   
         <DialogContent>
         <DialogHeader>
-        
-        <DialogDescription className="text-center bg-white rounded-lg">
+        <DialogTitle>Sign In</DialogTitle>
+        <DialogDescription>Please sign in to generate your personalized trip plan.</DialogDescription>
+        <div className="text-center bg-white rounded-lg">
            <img src="/logo.png" alt="Logo" className="w-20 h-20 mx-auto mb-4" />
-           <h2 classname="text-2xl font-bold text-center mb-2">Sign In With Google</h2>
-           <p className="text-center mb-4">Please sign in to generate your personalized trip plan.</p>
-           <Button 
-            onClick={()=>login()} 
-           classname="w-full  mb-5 flex gap-4 items-center">
+           <div className="text-2xl font-bold text-center mb-2">Sign In With Google</div>
+           <Button
+            onClick={()=>login()}
+           className="w-full mb-5 flex gap-4 items-center">
             <FcGoogle className="h-7 w-7" />Sign In with Google</Button>
-        </DialogDescription>
+        </div>
         </DialogHeader>
         </DialogContent>
       </Dialog>
